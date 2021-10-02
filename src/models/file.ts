@@ -2,12 +2,12 @@ import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import {Document} from 'mongoose';
 
 @Schema({timestamps: true})
-export class Link extends Document {
+export class File extends Document {
     @Prop({type: Number})
     externalID: number;
 
     @Prop({type: String})
-    pdfLink: string;
+    base64: string;
 }
 
-export const LinkSchema = SchemaFactory.createForClass(Link);
+export const FileSchema = SchemaFactory.createForClass(File);

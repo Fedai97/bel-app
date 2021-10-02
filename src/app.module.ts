@@ -6,7 +6,7 @@ import {
 import {MongooseModule} from '@nestjs/mongoose';
 import {AppController} from "./app.controller";
 import {AppService} from "./app.service";
-import {Link, LinkSchema} from "./models/link";
+import {File, FileSchema} from "./models/file";
 
 @Module({
     imports: [
@@ -24,9 +24,9 @@ import {Link, LinkSchema} from "./models/link";
         }),
         MongooseModule.forFeatureAsync([
             {
-                name: Link.name,
+                name: File.name,
                 useFactory: () => {
-                    return LinkSchema;
+                    return FileSchema;
                 },
             },
         ]),
