@@ -7,6 +7,9 @@ export class File extends Document {
     externalID: number;
 
     @Prop({type: String})
+    title: string;
+
+    @Prop({type: String})
     base64: string;
 }
 
