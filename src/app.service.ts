@@ -31,6 +31,6 @@ export class AppService {
     }
 
     async createQRByExternalID(externalID: number) {
-        return QRCode.toDataURL(`https://bel-app.herokuapp.com/api/file/${externalID}`);
+        return QRCode.toDataURL(`https://bel-app-web.herokuapp.com/file/${externalID}`);
     }
 }
