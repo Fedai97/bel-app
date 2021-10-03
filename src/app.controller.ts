@@ -24,13 +24,13 @@ export class AppController {
     }
 
     @Get('file/:externalID')
-    async getByExternalID(@Param('externalID') externalID: number) {
+    async getByExternalID(@Param('externalID') externalID: string) {
         const result = await this.app.getByExternalID(externalID);
         return {status: !!result, result}
     }
 
     @Post('qr/:externalID')
-    async createQRByExternalID(@Param('externalID') externalID: number) {
+    async createQRByExternalID(@Param('externalID') externalID: string) {
         const result = await this.app.createQRByExternalID(externalID);
         return {status: !!result, result}
     }

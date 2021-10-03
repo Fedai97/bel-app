@@ -16,7 +16,6 @@ export class AppService {
 
         const create = new this.fileModel({
             externalID: body.externalID,
-            title: body.title,
             base64: file?.buffer?.toString('base64')
         });
         return create.save();
@@ -26,11 +25,11 @@ export class AppService {
         return this.fileModel.find();
     }
 
-    async getByExternalID(externalID: number) {
+    async getByExternalID(externalID: string) {
         return this.fileModel.findOne({externalID});
     }
 
-    async createQRByExternalID(externalID: number) {
+    async createQRByExternalID(externalID: string) {
         return QRCode.toDataURL(`https://bel-app-web.herokuapp.com/file/${externalID}`);
     }
 }
