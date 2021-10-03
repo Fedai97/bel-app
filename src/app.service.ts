@@ -4,36 +4,33 @@ import {File} from "./models/file";
 import {InjectModel} from "@nestjs/mongoose";
 import * as QRCode from 'qrcode';
 
-const fs = require('fs');
-
-
 @Injectable()
 export class AppService {
     constructor(
         @InjectModel(File.name) private fileModel: Model<File>,
     ) {
-        // this.createQR();
     }
 
-    async addFile(file) {
-        console.log('result --> ', file);
+    async add(file, body) {
         if (!file || file?.fieldname !== 'file' || !file?.mimetype?.includes('pdf')) return null;
 
         const create = new this.fileModel({
-            externalID: 1,
+            externalID: body.externalID,
+            title: body.title,
             base64: file?.buffer?.toString('base64')
         });
         return create.save();
     }
 
-    async getFileByExternalID(externalID: number) {
-        const file = await this.fileModel.findOne({externalID});
-        // let buff = new Buffer(file.base64, 'base64');
+    async get(){
+        return this.fileModel.find();
+    }
 
-        return file;
+    async getByExternalID(externalID: number) {
+        return this.fileModel.findOne({externalID});
     }
 
     async createQRByExternalID(externalID: number) {
-        return QRCode.toDataURL(`http://localhost:20010/api/file/${externalID}`);
+        return QRCode.toDataURL(`https://bel-app.herokuapp.com/api/file/${externalID}`);
     }
 }
