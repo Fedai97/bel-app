@@ -3,7 +3,7 @@ import {Document} from 'mongoose';
 
 @Schema({timestamps: true})
 export class File extends Document {
-    @Prop({type: Number})
+    @Prop({type: Number, required: true, createIndexes: true})
     externalID: number;
 
     @Prop({type: String})
