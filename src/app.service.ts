@@ -32,4 +32,8 @@ export class AppService {
     async createQRByExternalID(externalID: string) {
         return QRCode.toDataURL(`https://bel-app-web.herokuapp.com/file/${externalID}`);
     }
+
+    async deleteByID(id){
+        return this.fileModel.deleteOne({_id: id});
+    }
 }

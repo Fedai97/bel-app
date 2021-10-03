@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, UploadedFile, UseInterceptors} from '@nestjs/common';
 import {AppService} from "./app.service";
 import {FileInterceptor} from "@nestjs/platform-express";
 import {AddDto} from "./dto/app.dto";
@@ -26,6 +26,12 @@ export class AppController {
     @Get('file/:externalID')
     async getByExternalID(@Param('externalID') externalID: string) {
         const result = await this.app.getByExternalID(externalID);
+        return {status: !!result, result}
+    }
+
+    @Delete('file/:id')
+    async deleteByID(@Param('id') id: string) {
+        const result = await this.app.deleteByID(id);
         return {status: !!result, result}
     }
 
